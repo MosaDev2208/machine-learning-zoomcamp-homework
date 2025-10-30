@@ -1,8 +1,3 @@
-"""
-Health check script for Lead Scoring API
-Module 5: ML Zoomcamp Deployment
-"""
-
 import requests
 import json
 

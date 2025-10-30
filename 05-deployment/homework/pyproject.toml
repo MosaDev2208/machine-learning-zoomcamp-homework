@@ -2,7 +2,6 @@
 name = "homework"
 version = "1.0.0"
 description = "ML Zoomcamp Module 5 - Lead Scoring Deployment"
-readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "scikit-learn==1.6.1",
