@@ -1,4 +1,3 @@
-cat << 'EOF' > README.md
 # Wind Turbine Predictive Maintenance 🌬️
 
 Welcome to the **Wind Turbine Predictive Maintenance** project! This repository hosts a Machine Learning solution designed to predict equipment failures before they happen. The goal is to leverage sensor data to identify whether a turbine is healthy or requires maintenance, reducing costly downtime and improving energy reliability.
@@ -57,3 +56,65 @@ This project utilizes the following tools and technologies:
 ```bash
 git clone [https://github.com/YOUR_USERNAME/machine-learning-zoomcamp-homework.git](https://github.com/YOUR_USERNAME/machine-learning-zoomcamp-homework.git)
 cd capstone-project
+
+2. Set Up the Python Environment
+We use uv for lightning-fast setup.
+
+Install uv (if not installed):
+curl -LsSf [https://astral.sh/uv/install.sh](https://astral.sh/uv/install.sh) | sh
+
+Install dependencies:
+uv sync
+
+Activate the environment:
+source .venv/bin/activate
+
+🚀 Exploratory Data Analysis and Modeling
+The data analysis and model training process are documented in the notebook.ipynb file.
+
+Key Insights
+We analyzed feature correlations to understand which sensors impact the maintenance status most.
+
+Training the Model
+The final training logic is exported to train.py. You can reproduce the training process by running:
+
+python train.py
+
+📁 Deployment
+This project includes a fully containerized FastAPI service for real-time predictions.
+
+Local Deployment with Docker
+You can build and run the service locally using Docker.
+1. Build the Image:
+docker build -t turbine-prediction .
+
+2. Run the Container:
+docker run -it --rm -p 8000:8000 turbine-prediction
+
+Testing the API
+Once the container is running, you can test it via curl in a separate terminal:
+
+curl -X 'POST' \
+  '[http://127.0.0.1:8000/predict](http://127.0.0.1:8000/predict)' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "turbine_id": "T-123",
+  "rotor_speed_rpm": 1500.0,
+  "wind_speed_mps": 12.5,
+  "power_output_kw": 2500.0,
+  "gearbox_oil_temp_c": 45.0,
+  "generator_bearing_temp_c": 50.0,
+  "vibration_level_mmps": 0.8,
+  "ambient_temp_c": 22.0,
+  "humidity_pct": 60.0
+}'
+
+
+📸 Proof of Deployment
+1. Container Startup Logs:
+2. Prediction Response:
+
+🎉 Acknowledgments
+A special thanks to DataTalks.Club for their free Machine Learning Zoomcamp course. The knowledge and skills gained from this course were instrumental in the development of this project.
+
+If you're interested in learning more about machine learning, I highly recommend checking out their course repository.
