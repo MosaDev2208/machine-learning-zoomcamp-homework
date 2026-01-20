@@ -238,13 +238,13 @@ print(response.json())
 
 The Docker container initializes FastAPI and exposes the prediction endpoint on port 8000:
 
-![Deployment Test 1](images/deployment_test1.png)
+![Deployment Test 1](images/deployment_test1.PNG)
 
 ### Successful API Response
 
 The following screenshot shows a successful prediction request returning maintenance status and probability:
 
-![Deployment Test 2](images/deployment_test2.png)
+![Deployment Test 2](images/deployment_test2.PNG)
 
 ---
 
