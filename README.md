@@ -368,8 +368,8 @@ python test.py
 
 **Clone the repository:**
 ```bash
-git clone https://github.com/MosaDev2208/machine-learning-zoomcamp-homework.git
-cd machine-learning-zoomcamp-homework
+git clone https://github.com/MosaDev2208/machine-learning-zoomcamp.git
+cd machine-learning-zoomcamp
 ```
 
 **For module work:**
@@ -619,6 +619,6 @@ This project is part of the DataTalks.Club Machine Learning Zoomcamp curriculum.
 ---
 
 **Last Updated:** January 2026 | **Status:** Complete & Production Ready ✅  
-**Repository:** [machine-learning-zoomcamp-homework](https://github.com/MosaDev2208/machine-learning-zoomcamp-homework)  
+**Repository:** [machine-learning-zoomcamp](https://github.com/MosaDev2208/machine-learning-zoomcamp)  
 **Course:** [ML Zoomcamp 2024-2025](https://datatalks.club/courses/2024-online-ml-zoomcamp.html)  
 **Author:** ML Zoomcamp Student | **License:** MIT
