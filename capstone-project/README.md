@@ -1,63 +1,75 @@
-# Wind Turbine Predictive Maintenance 🌬️
+cd ..
 
-Welcome to the **Wind Turbine Predictive Maintenance** project! This repository hosts a Machine Learning solution designed to predict equipment failures before they happen. The goal is to leverage sensor data to identify whether a turbine is healthy or requires maintenance, reducing costly downtime and improving energy reliability.
+cat > README.md << 'EOF'
+# Wind Turbine Predictive Maintenance
 
-This project is built with a rigorous **MLOps pipeline**, ensuring reproducibility and scalability using modern tools like `uv`, Docker, and FastAPI.
+[![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-4d6eff?style=flat&logoColor=white)](https://xgboost.readthedocs.io/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+[![uv](https://img.shields.io/badge/dependency%20manager-uv-4c8bf5)](https://github.com/astral-sh/uv)
 
-## 📝 **Problem Description**
+**End-to-end MLOps project** — predicting wind turbine maintenance needs from sensor data using modern tooling.
 
-Wind turbines are expensive assets operating in harsh environments. Unexpected failures in components like the gearbox or generator can lead to significant financial loss and energy disruption.
+## 🎯 Business Problem
 
-### **Objective**
+Wind turbine downtime is extremely expensive — both in lost energy production and repair costs. Predictive maintenance allows operators to perform interventions **before** a failure occurs, significantly reducing unplanned outages and extending equipment lifespan.
 
-The primary objective of this project is to develop a **binary classification model** capable of predicting the status of a turbine:
+This project implements a **binary classification model** that predicts whether a turbine requires maintenance (1 = Maintenance Needed, 0 = Healthy) based on real-time sensor readings.
 
-1.  **Healthy (0)**: No action required.
-2.  **Maintenance Required (1)**: The turbine shows signs of wear or imminent failure.
+## 📊 Dataset
 
-By automating this detection, operators can schedule repairs proactively rather than reactively.
+Source: Kaggle wind turbine SCADA dataset (commonly used in predictive maintenance challenges)
 
-## 📊 **Dataset**
+**Key features** used for modeling:
 
-The dataset is sourced from **Kaggle** and contains telemetry sensor data from wind turbines.
+- `rotor_speed_rpm` — Rotor rotational speed
+- `wind_speed_mps` — Wind speed at hub height
+- `power_output_kw` — Active power produced
+- `gearbox_oil_temp_c` — Gearbox oil temperature
+- `generator_bearing_temp_c` — Generator bearing temperature
+- `vibration_level_mmps` — Vibration level
+- `ambient_temp_c` — Outside air temperature
+- `humidity_pct` — Relative humidity
 
-### **Dataset Structure**
+Target: `maintenance_label` (0 = healthy, 1 = maintenance needed, 2 = critical — simplified to binary in modeling)
 
-Key features used for prediction include:
-- **`rotor_speed_rpm`**: Rotational speed of the main rotor.
-- **`power_output_kw`**: Current power generation output.
-- **`vibration_level_mmps`**: Vibration intensity (a critical indicator of mechanical wear).
-- **`gearbox_oil_temp_c`**: Temperature of the gearbox oil.
-- **`ambient_temp_c`**: Environmental temperature context.
+### Exploratory Data Analysis Highlights
 
-### **Target Distribution**
+**Class distribution** (highly imbalanced — typical for real maintenance problems):
 
-Below is the distribution of the target variable. We mapped the original multi-class target to a binary classification problem to simplify the decision-making process.
+![Target Distribution (Original)](images/target_distribution.png)
 
-![Target Distribution](images/target_distribution.png)
+**Feature correlations** (strong relationships between power, wind speed, rotor speed, and temperatures):
 
-## 🔧 **Tools & Technologies**
+![Feature Correlation Matrix](images/correlation_matrix.png)
 
-This project utilizes the following tools and technologies:
+## 🛠 Tech Stack
 
 - **Language**: Python 3.12
-- **Dependency Management**: `uv` (Modern, fast replacement for pip/pipenv)
-- **Machine Learning**: XGBoost, Scikit-Learn
-- **Web Application Framework**: FastAPI
-- **Containerization**: Docker
+- **Dependency & Environment Management**: [uv](https://github.com/astral-sh/uv) — ultra-fast modern replacement for pip + virtualenv
+- **Modeling**: XGBoost + scikit-learn preprocessing
+- **API Framework**: FastAPI
+- **Containerization & Deployment**: Docker
+- **Experimentation**: Jupyter notebook
 
-## ✨ **Setup**
+## Project Structure
 
-### **Prerequisites**
-
-- Python 3.12
-- Docker (for containerized deployment)
-- `uv` (for dependency management)
-
-### **Local Setup**
-
-#### 1. **Clone the Repository**
-
-```bash
-git clone [https://github.com/MosaDev2208/machine-learning-zoomcamp-homework.git](https://github.com/MosaDev2208/machine-learning-zoomcamp-homework.git)
-cd capstone-project
+```text
+machine-learning-zoomcamp-homework/
+└── capstone-project/
+    ├── data.csv
+    ├── images/
+    │   ├── target_distribution.png
+    │   ├── correlation_matrix.png
+    │   ├── deployment_test1.png
+    │   └── deployment_test2.png
+    ├── Dockerfile
+    ├── README.md
+    ├── main.py
+    ├── model.bin
+    ├── notebook.ipynb
+    ├── predict.py
+    ├── pyproject.toml
+    ├── train.py
+    └── uv.lock
